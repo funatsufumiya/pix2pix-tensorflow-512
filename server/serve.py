@@ -223,7 +223,8 @@ def main():
         raise Exception("must specify --local_models_dir or --cloud_model_names")
 
     if a.local_models_dir is not None:
-        import tensorflow as tf
+        import tensorflow.compat.v1 as tf
+        tf.disable_v2_behavior()
         for name in os.listdir(a.local_models_dir):
             if name.startswith("."):
                 continue
